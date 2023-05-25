@@ -17,9 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('dashboard', 'Auth\HomeController@index')->name('dashboard');
+
+});
+
+Route::group(['middleware'=>['auth','role:editor']],function(){
+    Route::get('role',function(){
+        dd('Hi your role is editor');
+    });
+});
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
