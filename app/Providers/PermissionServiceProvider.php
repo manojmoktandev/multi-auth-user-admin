@@ -40,10 +40,27 @@ class PermissionServiceProvider extends ServiceProvider
         }
         //create Blade  template
         Blade::directive('role', function ($role) {
-            return "<?php if (auth()->check() && auth()->user()->hasRole({$role})) { ?>";
+            /**
+             * For User Role
+             * return "<?php if (auth()->check() && auth()->user()->hasRole({$role})) { ?>";
+             *  */
+
+            /*
+            ** For Admin Role
+            */
+            return "<?php if (auth()->guard('admin')->check() && auth()->guard('admin')->user()->hasRole({$role})) { ?>";
         });
 
         Blade::directive('endrole', function ($role) {
+            return "<?php } ?>";
+        });
+
+        Blade::directive('permission', function ($permission) {
+            dd(auth()->guard('admin')->user()->can('read-post'));
+            return "<?php if (auth()->guard('admin')->check() && auth()->guard('admin')->user()->can({$permission})) { ?>";
+        });
+
+        Blade::directive('endpermission', function ($permission) {
             return "<?php } ?>";
         });
     }
