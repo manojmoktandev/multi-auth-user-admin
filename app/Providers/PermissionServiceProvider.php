@@ -56,7 +56,6 @@ class PermissionServiceProvider extends ServiceProvider
         });
 
         Blade::directive('permission', function ($permission) {
-            dd(auth()->guard('admin')->user()->can('read-post'));
             return "<?php if (auth()->guard('admin')->check() && auth()->guard('admin')->user()->can({$permission})) { ?>";
         });
 

@@ -42,6 +42,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
         Route::post('login', 'AuthenticatedSessionController@store')->name('adminlogin');
     });
     Route::middleware('admin')->group(function(){
+        Route::get('', function(){
+            return redirect('admin/dashboard');
+        });
         Route::get('dashboard', 'HomeController@index')->name('dashboard');
     });
 

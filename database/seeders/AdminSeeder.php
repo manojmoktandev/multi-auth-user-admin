@@ -44,14 +44,14 @@ class AdminSeeder extends Seeder
            ['name'=>'update post','slug'=>'update-post'],
            ['name'=>'delete post','slug'=>'delete-post']
         ]);
-        //Assign Role to Admin
-        Admin::whereId(1)->first()->roles()->attach([1]);
-        Admin::whereId(2)->first()->roles()->attach([2]);
-        Admin::whereId(3)->first()->roles()->attach([3]);
+         // Assign Role
+         Admin::whereId(1)->first()->roles()->attach([1]);
+         Admin::whereId(2)->first()->roles()->attach([2]);
+         Admin::whereId(3)->first()->roles()->attach([3]);
 
-        //Assign Permission
-        Role::whereId(1)->first()->permissions()->attach([1,2,3,4]);
-        Role::whereId(2)->first()->permissions()->attach([1,2,3]);
-        Role::whereId(3)->first()->permissions()->attach([2]);
+         // Role has Permission
+         Role::whereId(1)->first()->permissions()->attach([1,2,3,4]);
+         Role::whereId(2)->first()->permissions()->attach([1,2]);
+         Role::whereId(3)->first()->permissions()->attach([1,2,3]);
     }
 }
