@@ -46,6 +46,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
             return redirect('admin/dashboard');
         });
         Route::get('dashboard', 'HomeController@index')->name('dashboard');
+        Route::get('adminTest','HomeController@adminTest')->name('adminTest');
+        Route::get('authorTest','HomeController@authorTest')->name('authorTest');
+        Route::get('editorTest','HomeController@editorTest')->name('editorTest');
+        Route::resource('posts','PostController');
     });
 
     Route::post('logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
