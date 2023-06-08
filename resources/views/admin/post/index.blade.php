@@ -6,9 +6,11 @@
     </x-slot>
 
     <div class="py-12">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <a href="{{route('admin.posts.create')}}">Create post</a>
                     <table class="min-w-full border-collapse block md:table">
                         <thead class="block md:table-header-group">
                             <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
@@ -38,4 +40,7 @@
             </div>
         </div>
     </div>
+    <script>
+        $('#flash-overlay-modal').modal();
+    </script>
 </x-admin-layout>
