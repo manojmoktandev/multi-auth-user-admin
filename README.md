@@ -18,4 +18,5 @@ User login with laravel breeze auth package and same files used in Admin auth al
     <li>User  Login and Register page</li>
     <li>Roles and Permission</li>
     <li>Custom Roles and Permission without Package </li>
+    <li>Manage Basecontroller for controllers </li>
 </ul>
