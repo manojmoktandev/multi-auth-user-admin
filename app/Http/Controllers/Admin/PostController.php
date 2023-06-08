@@ -17,7 +17,7 @@ class PostController extends AdminController
     public function index()
     {
         //
-        $posts =  Post::with(['author'])->whereAdminId(\Auth::guard('admin')->user()->id)->get();
+        $posts =  Post::with(['author'])->whereAdminId(\Auth::guard('admin')->user()->id)->latest()->get();
         return view('admin.post.index',['posts'=>$posts]);
     }
 
@@ -29,6 +29,7 @@ class PostController extends AdminController
     public function create()
     {
         //
+        return view('admin.post.create');
     }
 
     /**
@@ -37,9 +38,18 @@ class PostController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request,Post $post)
     {
         //
+
+        //$this->authorize('create',$post);
+        $data =  $request->validated();
+        $data['admin_id'] = \Auth::guard('admin')->user()->id;
+        $post::create($data);
+        // Store the flash data
+        //session()->flash('message', 'Data saved successfully.');
+        //flash('Post saved successfully')->important();
+        return redirect()->back()->with('alert', 'Data saved successfully.');
     }
 
     /**

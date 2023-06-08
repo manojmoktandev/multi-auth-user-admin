@@ -18,7 +18,8 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware'=>'auth'],function(){
-    Route::get('dashboard', 'Auth\HomeController@index')->name('dashboard');
+    //Route::get('dashboard', 'Auth\HomeController@index')->name('dashboard');
+    return view ('dashboard');
 
 });
 
