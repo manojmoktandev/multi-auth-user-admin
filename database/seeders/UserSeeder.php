@@ -23,15 +23,6 @@ class UserSeeder extends Seeder
             ['name'=>'Editor','email'=>'editor@gmail.com','password'=>bcrypt('password')],
             ['name'=>'Author','email'=>'author@gmail.com','password'=>bcrypt('password')]
         ]);
-        Role::insert([
-             ['name'=>'Editor','slug'=>'editor'],
-             ['name'=>'Author','slug'=>'author']
-        ]);
-        Permission::insert([
-            ['name'=>'create post','slug'=>'create-post'],
-            ['name'=>'read post','slug'=>'read-post'],
-            ['name'=>'update post','slug'=>'update-post'],
-            ['name'=>'delete post','slug'=>'delete-post']
-        ]);
+
     }
 }

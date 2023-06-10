@@ -1,8 +1,67 @@
 <x-admin-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
-        </h2>
+        @php
+            $dashboardRoute = "";
+            $dashboardName = "";
+        @endphp
+        @role('admin')
+            @php
+                $dashboardName =  __('Admin Dashboard');
+                $dashboardRoute = route('admin.adminTest');
+            @endphp
+        @endrole()
+        @role('editor')
+            @php
+                $dashboardName =  __('Editor Dashboard');
+            @endphp
+        @endrole()
+
+        @role('author')
+            @php
+                $dashboardName =  __('Author Dashboard');
+            @endphp
+        @endrole()
+        {{-- $dashboardName --}}
+        <ul class="inline-flex ">
+            <li class="p-2">
+                    <a href="{{$dashboardRoute}}"  class="px-5 py-2 bg-green-400 text-indigo-700 cursor-pointer">Admin Route</a>
+                {{-- @role('editor')
+                    {{ __('Editor Dashboard') }} <br>
+                    <a href="{{route('admin.editorTest')}}"  class="px-5 py-2 bg-green-400 text-indigo-700 cursor-pointer">Editor Route</a>
+                @endrole()
+
+                @role('author')
+                    {{ __('Author Dashboard') }} <br>
+                    <a href="{{route('admin.authorTest')}}"  class="px-5 py-2 bg-green-400 text-white cursor-pointer">Author Route</a>
+                @endrole() --}}
+            </li>
+            <li class="p-2">
+                <a href="{{ route('admin.posts.index') }}" class="px-5 py-2 bg-red-400 text-grey">Posts</a>
+            </li>
+        </ul>
+
+        {{-- <h2 class="font-semibold text-xl text-gray-800 leading-tight"> --}}
+
+        {{-- </h2> --}}
+        {{-- <h2  class="text-l text-gray-800 leading-tight"> --}}
+            @permission('create-post')
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"> Create </button>
+            @endpermission
+
+            @permission('read-post')
+                <button type="button" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Read</button>
+            @endpermission()
+
+            @permission('update-post')
+                <button type="button" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Update </button>
+            @endpermission
+
+            @permission('delete-post')
+                <button type="button" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"> Delete</button>
+            @endpermission
+
+
+        {{-- </h2> --}}
     </x-slot>
 
     <div class="py-12">
