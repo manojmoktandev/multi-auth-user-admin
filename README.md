@@ -21,6 +21,3 @@ Multi Auth System using  Laravel breeze auth package and custom packages.
     <li>Gate and policy for authorize roles  and permission </li>
     <li>Manage Basecontroller for controllers </li>
     <li>Admin controller inhertance from BaseController </li>
-
-
-
